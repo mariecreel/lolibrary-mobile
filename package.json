@@ -6,7 +6,9 @@
     "start": "expo start --dev-client",
     "android": "expo run:android",
     "ios": "expo run:ios",
-    "web": "expo start --web"
+    "web": "expo start --web",
+    "storybook": "start-storybook -p 7007",
+    "build-storybook": "build-storybook"
   },
   "dependencies": {
     "expo": "~44.0.2",
@@ -19,7 +21,15 @@
     "react-native-web": "0.17.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.12.9"
+    "@babel/core": "^7.12.9",
+    "@storybook/addon-actions": "^5.3",
+    "@storybook/addon-knobs": "^5.3",
+    "@storybook/addon-links": "^5.3",
+    "@storybook/addon-ondevice-actions": "^5.3.23",
+    "@storybook/addon-ondevice-knobs": "^5.3.25",
+    "@storybook/react-native": "^5.3.25",
+    "@storybook/react-native-server": "^5.3.23",
+    "babel-loader": "^8.2.3"
   },
   "private": true
 }
