@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "lolibrary-mobile",
+    "slug": "lolibrary-mobile",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "lolibrary-mobile"
+}
