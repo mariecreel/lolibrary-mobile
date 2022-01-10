@@ -2,3 +2,4 @@ node_modules
 ios/Pods/
 .DS_Store
 .expo
+.vscode
