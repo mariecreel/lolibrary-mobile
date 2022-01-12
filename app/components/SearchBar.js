@@ -1,26 +1,30 @@
-import React, { useState } from 'react';
-import { TextInput, StyleSheet } from 'react-native';
+import React from 'react';
+import { TextInput, StyleSheet, View} from 'react-native';
 
 const SearchBar = ({onChangeText}) => {
     return (
-        <TextInput
-            onChangeText={onChangeText}
-            style={styles.searchBar}
-            placeholder="Search Lolibrary"
-        />
+        <View style={styles.searchBarWrapper}>
+            <TextInput
+                onChangeText={onChangeText}
+                placeholder="Search Lolibrary"
+                style={styles.searchBar}
+            />
+        </View>
     );
 }
 
 const styles = StyleSheet.create({
     searchBar: {
-        height: 20,
-        borderWidth: 1,
-        borderRadius: 5,
-        padding: 20,
-        paddingLeft: 10,
-        paddingRight: 10,
-        width: '100%'
+        flex: 1,
     },
+    searchBarWrapper:{
+        height: 40,
+        borderWidth: 2,
+        borderRadius: 7,
+        padding:7,
+        alignSelf: 'center',
+        flexDirection: 'row',
+    }
 });
 
 export default SearchBar;
