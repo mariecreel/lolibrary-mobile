@@ -4,3 +4,4 @@ ios/Pods/
 .expo
 .vscode
 yarn-error.log
+.env
