@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { View, Text } from "react-native";
+import { View, Text, StyleSheet} from "react-native";
 import SearchBar from "../components/SearchBar";
 import SearchResults from "../components/SearchResults";
+import LoadingSpinner from "../components/LoadingSpinner";
 
 const Search = () => {
   const baseSearchUrl = "https://lolibrary.org/api/search";
@@ -61,9 +62,17 @@ const Search = () => {
           ? (searching ? `Searching for ${searchTerm}...` : `Search results for ${searchTerm} (${total} total results):`)
           : "Search results will appear below."}
       </Text>
-      {data ? <SearchResults data={data.data} /> : <></>}
+      <View style={style.resultsWrapper}>
+        {searching ? <LoadingSpinner searching={searching}/> : (data ? <SearchResults data={data.data} /> : <></>)}
+      </View>
     </View>
   );
 };
+
+const style = StyleSheet.create({
+    resultsWrapper:{
+        alignItems: 'center',
+    }
+});
 
 export default Search;

@@ -4,7 +4,6 @@ import SearchResult from './SearchResult';
 
 const SearchResults = ({data}) => {
     const [page, setPage] = useState('1');
-    useEffect(() => {console.log('data updated in search results')}, [data])
 
     const _renderItem = ({item}) => {
         return (
