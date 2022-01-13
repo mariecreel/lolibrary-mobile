@@ -3,9 +3,9 @@ import { View, Text, StyleSheet} from "react-native";
 import SearchBar from "../components/SearchBar";
 import SearchResults from "../components/SearchResults";
 import LoadingSpinner from "../components/LoadingSpinner";
+import fetchSearchData from "../utility/fetchSearchData";
 
 const Search = () => {
-  const baseSearchUrl = "https://lolibrary.org/api/search";
   const [searchTerm, setSearchTerm] = useState("");
   const [searching, setSearching] = useState(false)
   const [data, setData] = useState(null);
@@ -18,22 +18,8 @@ const Search = () => {
         if (!searching) {
             setSearching(true);
         }
-        const fetchSearchData = setTimeout(() => {
-                fetch(`${baseSearchUrl}`, {
-                method: "POST",
-                headers: {'Content-Type': 'application/json'},
-                body: JSON.stringify({ 
-                    brands: [],
-                    categories: [],
-                    colors: [],
-                    features: [],
-                    page: 1,
-                    tags: [],
-                    years: [],
-                    search: searchTerm 
-                    }),
-                })
-                .then((res) => res.json())
+        const _fetchSearchData = setTimeout(() => {
+                Promise.resolve(fetchSearchData(searchTerm))
                 .then((data) => {
                     setData(data);
                     setTotal(data.total);
@@ -44,7 +30,7 @@ const Search = () => {
         // need to clear timeout to prevent fetching data prematurely
         // before user has completed typing
         // see https://stackoverflow.com/a/61629055
-        return () => clearTimeout(fetchSearchData);
+        return () => clearTimeout(_fetchSearchData);
       } else {
           // clear search results when search bar is empty
           setData([]);
