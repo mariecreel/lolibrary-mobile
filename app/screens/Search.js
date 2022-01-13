@@ -8,12 +8,11 @@ const Search = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [data, setData] = useState(null);
   const [total, setTotal] = useState(0);
-
   // search automatically when text in input changes
   // wait three seconds until user has stopped typing
   useEffect(() => {
-      const fetchSearchData = setTimeout(() => {
-            if (searchTerm) {
+      if (searchTerm) {
+        const fetchSearchData = setTimeout(() => {
                 fetch(`${baseSearchUrl}`, {
                 method: "POST",
                 headers: {'Content-Type': 'application/json'},
@@ -34,12 +33,17 @@ const Search = () => {
                     setTotal(data.total);
                 })
                 .catch((e) => console.error(e));
-            }
         }, 3000);
         // need to clear timeout to prevent fetching data prematurely
         // before user has completed typing
         // see https://stackoverflow.com/a/61629055
         return () => clearTimeout(fetchSearchData);
+      } else {
+          // clear search results when search bar is empty
+          setData([]);
+          setTotal(0);
+          return;
+      }
   }, [searchTerm]);
 
   return (
