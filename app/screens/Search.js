@@ -6,12 +6,17 @@ import SearchResults from "../components/SearchResults";
 const Search = () => {
   const baseSearchUrl = "https://lolibrary.org/api/search";
   const [searchTerm, setSearchTerm] = useState("");
+  const [searching, setSearching] = useState(false)
   const [data, setData] = useState(null);
   const [total, setTotal] = useState(0);
   // search automatically when text in input changes
   // wait three seconds until user has stopped typing
   useEffect(() => {
       if (searchTerm) {
+        // set searching to true to trigger loading spinner
+        if (!searching) {
+            setSearching(true);
+        }
         const fetchSearchData = setTimeout(() => {
                 fetch(`${baseSearchUrl}`, {
                 method: "POST",
@@ -31,6 +36,7 @@ const Search = () => {
                 .then((data) => {
                     setData(data);
                     setTotal(data.total);
+                    setSearching(false)
                 })
                 .catch((e) => console.error(e));
         }, 3000);
@@ -42,6 +48,7 @@ const Search = () => {
           // clear search results when search bar is empty
           setData([]);
           setTotal(0);
+          setSearching(false);
           return;
       }
   }, [searchTerm]);
@@ -51,7 +58,7 @@ const Search = () => {
       <SearchBar onChangeText={setSearchTerm} text={searchTerm} />
       <Text>
         {searchTerm
-          ? `Search results for ${searchTerm} (${total} total results):`
+          ? (searching ? `Searching for ${searchTerm}...` : `Search results for ${searchTerm} (${total} total results):`)
           : "Search results will appear below."}
       </Text>
       {data ? <SearchResults data={data.data} /> : <></>}
