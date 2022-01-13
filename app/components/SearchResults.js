@@ -13,7 +13,7 @@ const SearchResults = ({data}) => {
     }
 
     return (
-        <View>
+        <View style={{height: '90%'}}>
             <FlatList 
                 data={data}
                 renderItem={_renderItem}
