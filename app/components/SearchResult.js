@@ -6,6 +6,7 @@ const SearchResult = ({item}) => {
         <View style={style.result}>
             <Image 
                 source={{uri: item.image}}
+                style={style.image}
             />
             <View>
                 <Text>{item.english_name}</Text>
@@ -19,7 +20,16 @@ const SearchResult = ({item}) => {
 const style = StyleSheet.create({
     result: {
         flex: 1,
-        flexDirection: 'column'
+        flexDirection: 'column',
+        alignItems: 'center',
+        width: '100%',
+        padding: 10,
+
+    },
+    image: {
+        flex: 1,
+        width: 300,
+        height: 300
     }
 });
 
