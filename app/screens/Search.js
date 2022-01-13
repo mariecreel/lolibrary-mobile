@@ -39,7 +39,7 @@ const Search = () => {
                     setSearching(false)
                 })
                 .catch((e) => console.error(e));
-        }, 3000);
+        }, 500);
         // need to clear timeout to prevent fetching data prematurely
         // before user has completed typing
         // see https://stackoverflow.com/a/61629055
