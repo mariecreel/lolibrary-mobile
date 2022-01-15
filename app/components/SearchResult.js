@@ -11,6 +11,7 @@ const SearchResult = ({item}) => {
             <View>
                 <Text>{item.english_name}</Text>
                 <Text>{item.foreign_name ? item.foreign_name : ''}</Text>
+                <Text>{item.categories ? item.categories[0].name : ''}</Text>
                 <Text>{item.brand ? item.brand.name : ''}</Text>
             </View>
         </View>
