@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { View, FlatList, StyleSheet} from "react-native";
+import { View, FlatList, StyleSheet } from "react-native";
 import SearchResult from "./SearchResult";
 import fetchSearchData from "../utility/fetchSearchData";
 import LoadingSpinner from "./LoadingSpinner";
@@ -9,13 +9,13 @@ const SearchResults = ({ data, searchTerm, total }) => {
   const [results, setResults] = useState(data.data);
   const [loading, setLoading] = useState(false);
 
-  // set mountedRef.current = true on mount so that 
+  // set mountedRef.current = true on mount so that
   // page state hook has no effect on mount.
   // we need to set a variable on mount because useEffect
   // automatically runs on mount.
   // see https://stackoverflow.com/a/64194949
   const mountedRef = useRef();
-  
+
   useEffect(() => {
     // only run after mount
     if (mountedRef.current) {
@@ -30,9 +30,9 @@ const SearchResults = ({ data, searchTerm, total }) => {
     mountedRef.current = true;
   }, []);
 
-  function _renderItem ({item}) {
+  function _renderItem({ item }) {
     return <SearchResult item={item} />;
-  };
+  }
 
   return (
     <View style={styles.wrapper}>
@@ -49,16 +49,16 @@ const SearchResults = ({ data, searchTerm, total }) => {
           }
         }}
       />
-      {loading ? <LoadingSpinner searching={loading}/> : null}
+      {loading ? <LoadingSpinner searching={loading} /> : null}
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-    wrapper: {
-        height: '90%',
-        alignItems: 'center',
-    }
-})
+  wrapper: {
+    height: "90%",
+    alignItems: "center",
+  },
+});
 
 export default SearchResults;
