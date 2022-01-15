@@ -49,7 +49,7 @@ const Search = () => {
           : "Search results will appear below."}
       </Text>
       <View style={style.resultsWrapper}>
-        {searching ? <LoadingSpinner searching={searching}/> : (data ? <SearchResults data={data.data} /> : <></>)}
+        {searching ? <LoadingSpinner searching={searching} marginTop={"30%"}/> : (data ? <SearchResults data={data} searchTerm={searchTerm} total={total}/> : <></>)}
       </View>
     </View>
   );
