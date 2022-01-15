@@ -1,10 +1,10 @@
 import React from 'react';
 import {View, StyleSheet, ActivityIndicator} from 'react-native';
 
-const LoadingSpinner = ({searching}) => {
+const LoadingSpinner = ({searching, marginTop}) => {
     return (
-        <View style={style.wrapper}>
-            <ActivityIndicator size="large" color="pink" animating={searching}/>
+        <View style={{marginTop: marginTop, ...style.wrapper}}>
+            <ActivityIndicator size="large" animating={searching}/>
         </View>
 
     )
@@ -14,9 +14,9 @@ const style = StyleSheet.create({
     wrapper: {
         flex: 1,
         width: '60%',
-        marginTop: '30%',
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+        backgroundColor: 'transparent',
     },
 });
 
